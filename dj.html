@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Changing Background</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            
+            /* Apply the background color animation */
+            animation: rainbowBackground 10000ms linear infinite;
+        }
+
+        /* Define the rainbow animation keyframes */
+        @keyframes rainbowBackground {
+            0%   { background-color: #FF0000; } /* Red */
+            17%  { background-color: #FFA500; } /* Orange */
+            33%  { background-color: #FFFF00; } /* Yellow */
+            50%  { background-color: #008000; } /* Green */
+            67%  { background-color: #0000FF; } /* Blue */
+            83%  { background-color: #4B0082; } /* Indigo */
+            100% { background-color: #FF0000; } /* Back to Red for a smooth loop */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Beautiful Rainbow Background</h1>
+
+</body>
+</html>

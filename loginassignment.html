@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+*{margin: 0;padding: 0;font-family: sans-serif;box-sizing: border-box;}
+body{
+    background-image: radial-gradient(rgb(58, 77, 77),rgb(44, 65, 65),rgb(42, 62, 62));
+    height: 100vh;
+}
+.navbar{
+    height: 12vh;
+    width: 100%;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 4fr,repeat(4,1fr),4fr;
+    background-color: red;
+}
+.login{
+    height: 20rem;
+    width: 18rem;
+    display: flex;
+    border: 5px solid cyan;
+    background-color: rgb(30, 79, 79);
+    padding: 40px;
+    margin:auto auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.line{
+    height: 80px;
+    width: 100%;
+}
+</style>
+<body>
+    <nav class="navbar">
+        <div>Brand</div>
+        
+            <div class="navchild"><a href="#" class="navIcon">Home</a></div>
+            <div class="navchild"><a href="#" class="navIcon">Trending</a></div>
+            <div class="navchild"><a href="#" class="navIcon">About</a></div>
+            <div class="navchild"><a href="#" class="navIcon">Contact us</a></div>
+            
+        <div class="notify">Notify
+            <span class="supsu"></span>
+        </div>
+    </nav>
+    <div class="login"><h1>Welcome Back</h1>
+        <div class="line"><input type="text" name="name" placeholder="Enter your Name"></div>
+        <div class="line"><input type="password" name="Password" aria-placeholder="Enter Your Password"></div>
+        <div class="line"><input type="submit" value="Submit"></div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

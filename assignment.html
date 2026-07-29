@@ -1,0 +1,394 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Form with Navbar</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+
+        /* --- Navbar Styles --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: rgba(17, 17, 17, 0.95);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 0.125rem;
+            cursor: pointer;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: cyan;
+        }
+        /* --------------------- */
+
+        .bg1 {
+            height: 100vh;
+            background: #111; 
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
+
+        .thebox {
+            background: linear-gradient(135deg, #2c3e50, #000000);
+            padding: 2.5rem; 
+            border-radius: 0.9375rem; 
+            border: 0.0625rem solid rgba(255, 255, 255, 0.1); 
+            color: white;
+            width: 20rem; 
+        }
+
+        .line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem; 
+            position: relative; 
+        }
+
+        .line input {
+            flex: 1;
+            padding: 0.625rem; 
+            border-radius: 0.3125rem; 
+            border: none;
+            outline: 0.125rem solid transparent; 
+            transition: 0.3s;
+            font-size: 1rem; 
+        }
+
+        .line input:focus {
+            outline: 0.125rem solid cyan; 
+        }
+
+        .icon-thing {
+            margin-left: 0.625rem; 
+            cursor: pointer; 
+            color: cyan;
+            font-weight: bold;
+            font-size: 1.1rem;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .msg {
+            display: none; 
+            position: absolute;
+            bottom: 1.5rem; 
+            right: 0;
+            background: #333333;
+            color: #ffffff;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            border: 0.0625rem solid #555555;
+            font-size: 0.75rem; 
+            font-family: Arial, sans-serif; 
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .icon-thing:hover .msg {
+            display: block; 
+        }
+
+        .pic-div {
+            height: 100vh;
+            background: url("peakpx (1).jpg") center/cover fixed;
+            background-color: #333; 
+        }
+
+        .color-div {
+            height: 100vh;
+            background: #222;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">BrandName</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="bg1">
+        <div class="thebox">
+            
+            <div class="line">
+                <input type="text" placeholder="Name">
+            </div>
+
+            <div class="line" style="margin-bottom: 0;">
+                <input type="password" placeholder="Password">
+                
+                <span class="icon-thing">ⓘ
+                    <span class="msg">Password should be minimum of 8 characters</span>
+                </span>
+            </div><br>
+            <div class="line">
+                <input type="submit" value="Submit" style="background-color: rgb(61, 158, 158);color: aqua; cursor: pointer;">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="pic-div"></div>
+    <div class="color-div"></div>
+    <div class="pic-div"></div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Form with Navbar</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+
+        /* --- Navbar Styles --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: rgba(17, 17, 17, 0.95);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; 
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 0.125rem;
+            cursor: pointer;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            justify-content: center; 
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: cyan;
+        }
+
+        .navbar .nav-right {
+            display: flex;
+            justify-content: flex-end; 
+            align-items: center;
+            padding-right: 1rem;
+        }
+
+        /* --- Notification Icon Styles (YouTube Style) --- */
+        .notification {
+            position: relative;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .notification:hover {
+            color: cyan;
+        }
+
+        /* YouTube style red badge with cutout border */
+        .notification sup {
+            position: absolute;
+            top: -0.15rem;
+            right: -0.4rem;
+            background-color: #cc0000; /* YouTube Red */
+            color: white; 
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 0.1rem 0.3rem;
+            border-radius: 0.5rem; /* Pill shape */
+            border: 0.125rem solid rgba(17, 17, 17, 0.95); /* Matches navbar bg for cutout effect */
+            line-height: 1;
+        }
+        /* --------------------- */
+
+        .bg1 {
+            height: 100vh;
+            background: #111; 
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
+
+        .thebox {
+            background: linear-gradient(135deg, #2c3e50, #000000);
+            padding: 2.5rem; 
+            border-radius: 0.9375rem; 
+            border: 0.0625rem solid rgba(255, 255, 255, 0.1); 
+            color: white;
+            width: 20rem; 
+        }
+
+        .line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem; 
+            position: relative; 
+        }
+
+        .line input {
+            flex: 1;
+            padding: 0.625rem; 
+            border-radius: 0.3125rem; 
+            border: none;
+            outline: 0.125rem solid transparent; 
+            transition: 0.3s;
+            font-size: 1rem; 
+        }
+
+        .line input:focus {
+            outline: 0.125rem solid cyan; 
+        }
+
+        .icon-thing {
+            margin-left: 0.625rem; 
+            cursor: pointer; 
+            color: cyan;
+            font-weight: bold;
+            font-size: 1.1rem;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .msg {
+            display: none; 
+            position: absolute;
+            bottom: 1.5rem; 
+            right: 0;
+            background: #333333;
+            color: #ffffff;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            border: 0.0625rem solid #555555;
+            font-size: 0.75rem; 
+            font-family: Arial, sans-serif; 
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .icon-thing:hover .msg {
+            display: block; 
+        }
+
+        .pic-div {
+            height: 100vh;
+            background: url("peakpx (1).jpg") center/cover fixed;
+            background-color: #333; 
+        }
+
+        .color-div {
+            height: 100vh;
+            background: #222;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Me hu DON</div>
+        
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="notification">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"></path>
+                </svg>
+                <sup>5</sup>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg1">
+        <div class="thebox">
+            
+            <div class="line">
+                <input type="text" placeholder="Name">
+            </div>
+
+            <div class="line" style="margin-bottom: 0;">
+                <input type="password" placeholder="Password">
+                
+                <span class="icon-thing">ⓘ
+                    <span class="msg">Password should be minimum of 8 characters</span>
+                </span>
+            </div><br>
+            <div class="line">
+                <input type="submit" value="Submit" style="background-color: rgb(61, 158, 158);color: aqua; cursor: pointer;">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="pic-div"></div>
+    <div class="color-div"></div>
+    <div class="pic-div"></div>
+
+</body>
+</html>

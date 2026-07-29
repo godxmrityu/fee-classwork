@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoL</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; color: white; }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            min-height: 100vh;
+        }
+
+        .navp {
+            width: 100%;
+            height: 70px;
+            display: grid;
+            grid-template-columns: 5fr repeat(5, 1fr) 1.5fr;
+            background-color: rgba(15, 23, 42, 0.9);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .navele {
+            margin: auto;
+            font-weight: bold;
+        }
+        .navele a {
+            text-decoration: none;
+            color: #94a3b8;
+            transition: color 0.2s;
+        }
+        .navele a:hover { color: #38bdf8; }
+
+        .main-container {
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        .main-container h1 {
+            color: #f8fafc;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            width: 90%;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            background: rgba(0,0,0,0.2);
+            outline: none;
+        }
+        input[type="text"]:focus {
+            border-color: #38bdf8;
+            background: rgba(0,0,0,0.4);
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.2s ease, opacity 0.2s;
+        }
+        button:hover { opacity: 0.8; transform: scale(1.05); }
+        
+        .btn-primary { background-color: #3b82f6; } 
+        .btn-success { background-color: #10b981; } 
+        .btn-danger { background-color: #ef4444; }  
+        .btn-gray { background-color: #64748b; }    
+
+        .task {
+            background: #1e293b;
+            margin: 10px 0;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #38bdf8;
+            border-radius: 5px;
+            transition: transform 0.2s ease;
+        }
+        .task:hover { transform: translateX(5px); }
+        
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 9;
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .popup {
+            position: fixed; top: 50%; left: 50%;
+            background: #1e293b;
+            padding: 30px;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            width: 320px;
+            z-index: 10;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            
+            transform: translate(-50%, -50%) scale(0.7);
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.show { opacity: 1; visibility: visible; }
+        .popup.show { 
+            opacity: 1; visibility: visible; 
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="navp">
+            <div class="navele" style="margin-left: 2rem;"><h2 style="color: #38bdf8;">TODOL</h2></div>
+            <div class="navele"><a href="#">Home</a></div>
+            <div class="navele"><a href="#">Login</a></div>
+            <div class="navele"><a href="#">Signup</a></div>
+            <div class="navele"><a href="#">Tool</a></div>
+            <div class="navele"><a href="#">Contact us</a></div>
+            <div></div> 
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <h1>Your Tasks</h1>
+        
+        <input type="text" id="searchBox" placeholder="Search tasks..." oninput="renderTasks()">
+        
+        <div id="todoList"></div>
+        
+        <br>
+        <button class="btn-primary" onclick="showPopup()" style="width: 200px; padding: 15px;">+ Add New Task</button>
+    </div>
+
+    <div class="overlay" id="overlayBox" onclick="hidePopup()"></div>
+
+    <div class="popup" id="popupBox">
+        <h3 style="color: #38bdf8; margin-bottom: 15px;">New Task</h3>
+        <input type="text" id="taskInput" placeholder="Enter task details...">
+        <div>
+            <button class="btn-primary" onclick="saveTask()">Save</button>
+            <button class="btn-gray" onclick="hidePopup()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
+
+        function showPopup() {
+            document.getElementById("overlayBox").classList.add("show");
+            document.getElementById("popupBox").classList.add("show");
+        }
+
+        function hidePopup() {
+            document.getElementById("overlayBox").classList.remove("show");
+            document.getElementById("popupBox").classList.remove("show");
+            document.getElementById("taskInput").value = ""; 
+        }
+
+        function saveTask() {
+            let text = document.getElementById("taskInput").value;
+            if (text === "") return; 
+
+            tasks.push({ 
+                id: Date.now(), 
+                text: text, 
+                done: false
+            }); 
+            
+            hidePopup();
+            renderTasks();
+        }
+
+        function deleteTask(id, btnElement) {
+            btnElement.disabled = true;
+            btnElement.style.opacity = "0.5";
+            btnElement.innerText = "...";
+            
+            setTimeout(() => {
+                tasks = tasks.filter(t => t.id !== id);
+                renderTasks();
+            }, 3000);
+        }
+
+        function completeTask(id) {
+            let task = tasks.find(t => t.id === id);
+            task.done = !task.done; 
+            renderTasks();
+        }
+
+        function renderTasks() {
+            localStorage.setItem("myTasks", JSON.stringify(tasks));
+            
+            let listElement = document.getElementById("todoList");
+            let searchText = document.getElementById("searchBox").value.toLowerCase();
+            
+            listElement.innerHTML = ""; 
+
+            for (let i = 0; i < tasks.length; i++) {
+                let currentTask = tasks[i];
+                
+                if (currentTask.text.toLowerCase().includes(searchText)) {
+                    let textClass = currentTask.done ? "completed" : "";
+                    let btnClass = currentTask.done ? "btn-gray" : "btn-success";
+                    let btnText = currentTask.done ? "Undo" : "Done";
+
+                    listElement.innerHTML += `
+                        <div class="task">
+                            <span class="${textClass}">${currentTask.text}</span>
+                            <div>
+                                <button class="${btnClass}" onclick="completeTask(${currentTask.id})">${btnText}</button>
+                                <button class="btn-danger" onclick="deleteTask(${currentTask.id}, this)">Del</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        renderTasks();
+    </script>
+
+</body>
+</html>
