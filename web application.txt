@@ -1,0 +1,29 @@
+web application
+ux
+ui
+css 
+JS
+react
+links
+buttons
+function 
+onClick
+state
+forms
+onSubmit
+validiation
+component
+multipages
+props
+map
+filter
+zustand
+router
+nested routes
+global state
+
+web application: first of all we need a web application to work on and give it to user to use
+ux: Being a good developer our main goal is to maximize user experience so the user spends his/her time comfortably on website and recommend others to use the website
+ui: better interface help user to use website flawlessly and perform their daily tasks efficiently , this will also increase ux 
+css: this is important as we know the things who look good go for more so yes having a good design in your website favours all of above points as without a good decoration user wont revisit the website
+js: we this js as we will not only create blogs we will make a functional website so that website needs js to implement functionalies
